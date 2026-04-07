@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "HAX: Vibe Coding Plan Generator"
+version = "1.0.0"
+id = "artifacts/hax"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19323
+
+[services.development]
+run = "pnpm --filter @workspace/hax run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/hax", "run", "build" ]
+publicDir = "artifacts/hax/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19323"
+BASE_PATH = "/"

@@ -25,3 +25,27 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+### HAX: Vibe Coding Plan Generator (`artifacts/hax`)
+- **Type**: React + Vite, frontend-only (no backend)
+- **Path**: `/` (root preview path)
+- **Purpose**: Gamified questionnaire guiding AI app builders through Microsoft's HAX (Human-AI eXperience) Toolkit. Generates a structured markdown "Vibe Coding Plan" prompt.
+- **Key features**:
+  - 4-stage HAX questionnaire (8 questions) with Framer Motion card animations
+  - Yes/No toggles + text notes per question
+  - Undo, Back, Start Over navigation (HAX G9/G10 compliance)
+  - Auto-save to localStorage (HAX G4 compliance)
+  - Dark/light mode toggle with persistence (HAX G13/G14)
+  - Confetti animation on prompt generation
+  - Copy-to-clipboard generated markdown prompt with inline HAX source links
+  - History tab for previously generated prompts
+  - Settings page for data management and memory transparency
+  - Every question card links to the official Microsoft HAX Toolkit guideline page
+- **HAX Compliance**: G1, G2, G4, G8, G9, G10, G13, G14 all explicitly implemented
+- **Source**: https://www.microsoft.com/en-us/haxtoolkit/
+
+### API Server (`artifacts/api-server`)
+- Express 5 + Pino logging
+- Currently serves only a health check at `/api/healthz`
