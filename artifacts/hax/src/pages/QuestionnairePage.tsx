@@ -85,19 +85,19 @@ export default function QuestionnairePage() {
 
   const cardVariants = {
     enter: (dir: string) => ({
-      x: dir === 'forward' ? 280 : -280,
+      rotateY: dir === 'forward' ? 90 : -90,
       opacity: 0,
-      scale: 0.96,
+      scale: 0.95,
     }),
     center: {
-      x: 0,
+      rotateY: 0,
       opacity: 1,
       scale: 1,
     },
     exit: (dir: string) => ({
-      x: dir === 'forward' ? -280 : 280,
+      rotateY: dir === 'forward' ? -90 : 90,
       opacity: 0,
-      scale: 0.96,
+      scale: 0.95,
     }),
   };
 
@@ -196,7 +196,7 @@ export default function QuestionnairePage() {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-8">
-        <div className="w-full max-w-2xl relative" style={{ minHeight: 400 }}>
+        <div className="w-full max-w-2xl relative" style={{ minHeight: 400, perspective: 1200 }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={question.id}
@@ -205,7 +205,8 @@ export default function QuestionnairePage() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ type: 'spring', stiffness: 320, damping: 32 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 28 }}
+              style={{ transformOrigin: 'center center', backfaceVisibility: 'hidden' }}
               className="w-full"
             >
               {/* Question card */}
