@@ -18,9 +18,10 @@ import { useHax } from '../App';
 
 export default function HistoryPage() {
   const [, navigate] = useLocation();
-  const { state, toggleTheme, deleteHistoryItem } = useHax();
+  const { state, toggleTheme, deleteHistoryItem, clearAllHistory } = useHax();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   const handleCopy = async (content: string, id: string) => {
     try {
@@ -106,8 +107,32 @@ export default function HistoryPage() {
                 Your previously generated Vibe Coding Plans — stored locally on this device.
               </p>
             </div>
-            <div className="text-sm text-muted-foreground">
-              {state.history.length} prompt{state.history.length !== 1 ? 's' : ''}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">
+                {state.history.length} prompt{state.history.length !== 1 ? 's' : ''}
+              </span>
+              {state.history.length > 0 && (
+                <button
+                  onClick={() => {
+                    if (showClearConfirm) {
+                      clearAllHistory();
+                      setShowClearConfirm(false);
+                    } else {
+                      setShowClearConfirm(true);
+                    }
+                  }}
+                  onBlur={() => setTimeout(() => setShowClearConfirm(false), 200)}
+                  className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1.5 rounded-lg transition-all ${
+                    showClearConfirm
+                      ? 'bg-destructive/10 text-destructive hover:bg-destructive/20'
+                      : 'text-muted-foreground hover:text-destructive hover:bg-destructive/10'
+                  }`}
+                  aria-label="Clear all prompt history"
+                >
+                  <Trash2 className="w-3 h-3" />
+                  {showClearConfirm ? 'Confirm clear all?' : 'Clear All'}
+                </button>
+              )}
             </div>
           </div>
 

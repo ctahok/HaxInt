@@ -34,7 +34,9 @@ export function loadState(): AppState {
           : DEFAULT_STATE.answers,
       history: Array.isArray(parsed.history) ? parsed.history : [],
       currentQuestion:
-        typeof parsed.currentQuestion === 'number' ? parsed.currentQuestion : 0,
+        typeof parsed.currentQuestion === 'number'
+          ? Math.max(0, Math.min(7, parsed.currentQuestion))
+          : 0,
     };
   } catch {
     return DEFAULT_STATE;
