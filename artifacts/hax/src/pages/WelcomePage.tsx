@@ -202,6 +202,10 @@ export default function WelcomePage() {
           </motion.div>
         </motion.div>
       </div>
+
+      <footer className="relative z-10 text-center py-4">
+        <p className="text-xs text-muted-foreground">2026 Copyright © - Klaud.uk</p>
+      </footer>
     </div>
   );
 }
