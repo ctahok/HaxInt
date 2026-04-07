@@ -1,0 +1,35 @@
+Project Context: Build a playful, interactive web application using React (Next.js preferred) and Tailwind CSS. The app's purpose is to guide AI application builders through Microsoft's HAX (Human-AI eXperience) Toolkit via a gamified questionnaire. Based on their answers, the app will generate a comprehensive "Vibe Coding Plan" prompt that the user can copy and paste into any AI coding agent's plan mode.
+CRITICAL REQUIREMENT - HAX SELF-COMPLIANCE: The application ITSELF must meticulously follow the Microsoft HAX Guidelines for Human-AI Interaction. Implement the following UX/UI features directly into the app's design to demonstrate these principles in action:
+G1 & G2 (Initially - Setting Expectations): The Welcome Screen must explicitly state what the app can do (generate a prompt) and what it cannot do (it cannot write the actual code for them, and the resulting prompt may need manual tweaking).
+G4 (During Interaction - Context): The app must not interrupt the user with pop-ups. It should save progress locally so the user can leave and return without losing context.
+G9 & G10 (When Things Go Wrong - Dismissal and Recovery): Include a persistent, easy-to-find "Undo" button and a "Start Over" button on every screen. Allow users to easily navigate backward to change previous answers without losing their place.
+G13 & G14 (Over Time - Learning & Updating): Remember user preferences (like Dark/Light mode) and previously generated prompts in local storage. Provide a clear "Settings" or "History" tab where users can view, edit, or clear this stored memory.
+Design & UI Vibe:
+Playful & Engaging: Use a vibrant color palette, smooth transitions between questions, and friendly, encouraging microcopy (e.g., "Awesome choice!", "Let's make sure your AI doesn't go rogue!").
+Layout: A centered, card-based interface for the questions, with a progress bar at the top indicating progression through the 4 HAX lifecycle stages.
+Typography: Clean, modern sans-serif fonts with large, readable text.
+Core Features & User Flow:
+1. Welcome Screen: Briefly explains that the user is going to define the Human-AI interaction rules for their app using the HAX Toolkit. Includes a fun "Let's Vibe!" start button. Must include the expectation-setting disclosures mentioned in the compliance section above.
+2. The HAX Questionnaire (4 Stages): Present these questions sequentially. Users should be able to toggle whether their app needs to handle these scenarios (Yes/No), and if Yes, add a brief text note on how they want to handle it.
+Stage 1: Initially
+"How will your AI make clear what it can do?"
+"How will your AI make clear how well it can do it?"
+Stage 2: During Interaction
+"How will you time services based on context?"
+"How will you mitigate social biases?"
+Stage 3: When Things Go Wrong
+"How will your AI support efficient dismissal?"
+"How will the AI allow the user to easily edit, refine, or recover when the AI is wrong?"
+Stage 4: Over Time
+"How will your AI remember recent interactions?"
+"How will it allow the user to update or tweak its memory/preferences?"
+3. Generation & Output Screen:
+Once the questionnaire is complete, display a celebratory animation (e.g., confetti).
+Generate a large markdown string formatted as a strict "System Prompt / Vibe Coding Plan".
+The output should inject the user's answers into a structured template that tells an AI coding agent exactly how to implement the UI, error handling, and state logic for the requested AI features.
+Include a prominent "Copy to Clipboard" button.
+Technical Requirements:
+Use React state management for the questionnaire answers.
+Create a markdown generator function that loops through the collected answers and dynamically formats the final Vibe Coding prompt.
+Ensure responsive design so it works flawlessly on both mobile and desktop.
+Add simple Framer Motion animations for flipping between the question cards.
